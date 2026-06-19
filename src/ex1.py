@@ -1,7 +1,7 @@
 from sympy import *
 from sympy.plotting import plot, plot_parametric
 
-# Projwctile Motion
+# Projectile Motion
 
 t = symbols('t', positive=True)
 g, k, m = symbols('g k m', positive=True)
