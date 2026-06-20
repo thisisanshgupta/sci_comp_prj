@@ -1,0 +1,1 @@
+# Double Pendulum and Coupled Pendulum (with a spring) using Lagrangian mechanics 
