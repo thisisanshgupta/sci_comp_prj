@@ -21,10 +21,10 @@ eq_z = Eq(
 )
 
 print("\nHorizontal Equation:")
-pprint(eq_x);
+pprint(eq_x)
 
 print("\nVertical Equation:")
-pprint(eq_z);
+pprint(eq_z)
 
 ics_x = {
     x(0): 0,
@@ -43,10 +43,10 @@ x_t = simplify(sol_x.rhs)
 z_t = simplify(sol_z.rhs)
 
 print("\nSolution for x(t):")
-pprint(sol_x);
+pprint(sol_x)
 
 print("\nSolution for z(t):")
-pprint(sol_z);
+pprint(sol_z)
 
 params = {
     g: 9.81,
@@ -60,10 +60,10 @@ x_num = x_t.subs(params)
 z_num = z_t.subs(params)
 
 print("\nSimplified x(t):")
-pprint(x_num);
+pprint(x_num)
 
 print("\nSimplified z(t):")
-pprint(z_num);
+pprint(z_num)
 
 eq_x_parabolic = Eq(
     m * diff(x(t), t, 2),
@@ -91,10 +91,10 @@ x_num_parabolic = x_t_parabolic.subs(params_parabolic_numerical)
 z_num_parabolic = z_t_parabolic.subs(params_parabolic_numerical)
 
 print("\nSimplified x(t) for parabolic trajectory (k=0):")
-pprint(x_num_parabolic);
+pprint(x_num_parabolic)
 
 print("\nSimplified z(t) for parabolic trajectory (k=0):")
-pprint(z_num_parabolic);
+pprint(z_num_parabolic)
 
 p1 = plot(
     x_num,
@@ -117,8 +117,7 @@ p2 = plot(
 )
 
 p3 = plot_parametric(
-     x_num,
-     z_num,
+     (x_num, z_num),
      (t, 0, 10),
      show=False,
      line_color='green',
@@ -128,8 +127,7 @@ p3 = plot_parametric(
 )
 
 p4 = plot_parametric(
-     x_num_parabolic,
-     z_num_parabolic,
+     (x_num_parabolic, z_num_parabolic),
      (t, 0, 10),
      show=False,
      line_color='purple',
@@ -203,8 +201,8 @@ Gamma_t = sqrt(1 + (px_t**2 + pz_t**2) / (m**2 * c_sym**2))
 vx_t = px_t / (m * Gamma_t)
 vz_t = pz_t / (m * Gamma_t)
 
-x_t_rel = integrate(vx_t.subs(t, t_dummy), (t_dummy, 0, t))
-z_t_rel = integrate(vz_t.subs(t, t_dummy), (t_dummy, 0, t))
+x_t_rel = Integral(vx_t.subs(t, t_dummy), (t_dummy, 0, t))
+z_t_rel = Integral(vz_t.subs(t, t_dummy), (t_dummy, 0, t))
 
 params_rel_toy_c = {
     g: 9.81,
@@ -214,8 +212,8 @@ params_rel_toy_c = {
     theta: pi/4
 }
 
-x_num_rel = x_t_rel.subs(params_rel_toy_c)
-z_num_rel = z_t_rel.subs(params_rel_toy_c)
+x_num_rel = x_t_rel.subs(params_rel_toy_c).doit()
+z_num_rel = z_t_rel.subs(params_rel_toy_c).doit()
 
 v0x_classical = params_rel_toy_c[v0] * cos(params_rel_toy_c[theta])
 v0z_classical = params_rel_toy_c[v0] * sin(params_rel_toy_c[theta])
@@ -227,8 +225,7 @@ z_num_parabolic_compare = v0z_classical * t - (g_classical * t**2) / 2
 plot_t_range = (t, 0, 20)
 
 p_rel = plot_parametric(
-    x_num_rel,
-    z_num_rel,
+    (x_num_rel, z_num_rel),
     plot_t_range,
     show=False,
     line_color='blue',
@@ -236,8 +233,7 @@ p_rel = plot_parametric(
 )
 
 p_classical = plot_parametric(
-    x_num_parabolic_compare,
-    z_num_parabolic_compare,
+    (x_num_parabolic_compare, z_num_parabolic_compare),
     plot_t_range,
     show=False,
     line_color='red',
