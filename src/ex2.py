@@ -65,7 +65,7 @@ y_num = y.subs(params)
 
 p1 = plot(
     y1_num,
-    (x, 0, 15),
+    (x, 0, 10),
     show=False,
     title="Wave y1"
 )
@@ -95,6 +95,3 @@ p1.show()
 p2.show()
 p3.show()
 p4.show()
-
-
-
