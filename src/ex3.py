@@ -2,6 +2,7 @@
 
 import sympy as sp
 
+# Double Pendulum 
 t = sp.symbols('t')
 
 theta1 = sp.Function('theta1')(t)
@@ -70,7 +71,7 @@ a2 = sol[theta2dd]
 sp.pprint(a1)
 sp.pprint(a2)
 
-
+# Coupled Pendulum 
 t = sp.symbols('t')
 
 theta1 = sp.Function('theta1')(t)
